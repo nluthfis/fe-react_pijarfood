@@ -14,10 +14,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.fullName]: e.target.value });
-    setFormData({ ...formData, [e.target.email]: e.target.value });
-    setFormData({ ...formData, [e.target.password]: e.target.value });
-    setFormData({ ...formData, [e.target.phoneNumber]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
