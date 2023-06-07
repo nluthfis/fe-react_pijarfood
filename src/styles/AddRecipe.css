@@ -1,0 +1,32 @@
+.text-primary {
+  color: #2e266f !important;
+}
+
+.upload {
+  background-color: #e5e4e2;
+  padding: 100px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.form-control {
+  background: #e5e4e2;
+}
+
+.submit-button {
+  position: absolute;
+  left: 45%;
+  right: 45%;
+}
+
+@media only screen and (max-width: 640px) {
+  .upload,
+  .form-control {
+    width: 100%;
+  }
+  .btn {
+    width: 40%;
+    left: 30%;
+    right: 30%;
+  }
+}

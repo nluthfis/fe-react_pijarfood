@@ -1,0 +1,34 @@
+{
+  "menu": [
+    {
+      "title": "Gulai Daun Singkong",
+      "image": "Gulaidaunsingkongleunca.jpg",
+      "slug": "gulai-daun-singkong"
+    },
+    {
+      "title": "Gulai Nangka Padang",
+      "image": "Gulainangkapadang.jpg",
+      "slug": "gulai-nangka-padang"
+    },
+    {
+      "title": "Oseng Teri Kentang",
+      "image": "osengterikentang.jpg",
+      "slug": "oseng-teri-kentang"
+    },
+    {
+      "title": "Tumis Udang Terong",
+      "image": "Tumisudangterongungu.jpg",
+      "slug": "tumis-udang-terong"
+    },
+    {
+      "title": "Tongseng Sapi",
+      "image": "Tongsengsapitanpasantan.jpg",
+      "slug": "tongseng-sapi"
+    },
+    {
+      "title": "Roti Telor",
+      "image": "1.jpg",
+      "slug": "roti-telur"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.left {
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(
+      rgba(223, 136, 108, 0.76),
+      rgba(223, 136, 108, 0.76)
+    ),
+    url("/public/img/back.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+h1 {
+  color: #efc81a;
+}
+@media only screen and (max-width: 640px) {
+  .left {
+    width: 100%;
+  }
+  .logo {
+    display: none;
+  }
+  .right {
+    width: 100%;
+    position: absolute;
+    margin-top: 25%;
+
+    background-color: wheat;
+  }
+}

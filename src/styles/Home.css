@@ -1,0 +1,140 @@
+.text-primary,
+.nav-item {
+  color: #2e266f !important;
+}
+
+.tittle {
+  font-size: 56px;
+}
+
+.nav-item {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 50px;
+}
+
+.bg_yellow {
+  background-color: #efc81a;
+  height: 100vh;
+  width: 25%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.bg_yellow_2 {
+  background-color: #efc81a;
+  height: 500px;
+  width: 25%;
+  position: absolute;
+  left: 0;
+  top: 12vh;
+  z-index: -1;
+  border-radius: 0px 10px 0px 0px;
+}
+
+section {
+  position: relative;
+}
+
+.subtitle {
+  border-left: 10px solid #efc81a;
+  padding-left: 20px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  margin-top: 10vh;
+}
+
+.menu-background {
+  width: 100%;
+  background-color: gray;
+  height: 350px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: end;
+  padding: 20px;
+}
+.search-bar {
+  width: 50%;
+}
+
+.popular-menu-list {
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+.logo-logo {
+  display: none;
+  visibility: hidden;
+}
+
+@media only screen and (max-width: 640px) {
+  .logo-logo {
+    display: block;
+    visibility: visible;
+    height: 25px;
+  }
+
+  .tittle {
+    font-size: 36px;
+  }
+
+  .img-header,
+  .img-menu {
+    width: 300px;
+    height: auto;
+  }
+  .search-bar {
+    width: 100%;
+  }
+
+  .bg_yellow,
+  .bg_yellow_2 {
+    width: 100%;
+    height: 100%;
+  }
+  #popular-for-you,
+  #new_recipe {
+    margin-top: 100px;
+  }
+  .food-name {
+    font-size: 28px;
+    margin-top: 25px;
+    width: 300px;
+  }
+  .text-muted {
+    width: 300px;
+  }
+  #popular-recipe {
+    margin-top: 200px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1007px) {
+  .tittle {
+    font-size: 36px;
+  }
+  .img-header,
+  .img-menu {
+    width: 300px;
+    height: auto;
+  }
+
+  .food-name {
+    font-size: 28px;
+    margin-top: 25px;
+  }
+  .search-bar {
+    width: 100%;
+  }
+
+  .bg_yellow_2 {
+    margin-top: -60px;
+  }
+}

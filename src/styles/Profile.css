@@ -1,0 +1,25 @@
+.text-primary {
+  color: #2e266f !important;
+}
+#exTab2 h3 {
+  color: white;
+  background-color: #428bca;
+  padding: 5px 15px;
+}
+
+.menu-background {
+  width: 100%;
+  background-color: gray;
+  height: 250px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: end;
+  padding: 20px;
+}
+
+.popular-menu-list {
+  color: white;
+}
