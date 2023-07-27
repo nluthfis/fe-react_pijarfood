@@ -1,10 +1,68 @@
+<br />
+<p align="center">
+  <h3 align="center">Pijar Food</h3>
+</p>
+
+<!-- ABOUT THE PROJECT -->
+
+## About The Project
+
+Pijar Food is a platform for viewing and sharing food recipes developed with React.js for the front-end and integrated into the PostgreSQL database using Express.js as the back-end for the platform.
+
+### Project Structure
+
+```
+|── FE-REACT_PIJARFOOD
+   |── public          # Public Assets
+   |── documentation   # Screenshots of the application
+   |── src             # Project source code
+       |── components  # Application components
+       |── pages       # Pages source code
+       |── reducers    # State management
+       |── styles      # Application CSS
+   |── .env            # Environment variables
+   |── .gitignore      # Files that should be ignored
+   |── README.md       # Readme
+```
+
+### Screenshots
+
+<table>
+<tr>
+<td><img width="350px" src="./documentation/login.jpg" border="0" alt="Login" /></td>
+    <td> <img width="350px" src="./documentation/register.jpg" border="0"  alt="Register" /></td>
+    <td> <img width="350px" src="./documentation/forgotpassword.jpg" border="0"  alt="ForgotPassword" /></td>
+</tr>
+<td><img width="350px" src="./documentation/home.jpg" border="0" alt="home" /></td>
+    <td> <img width="350px" src="./documentation/details.jpg" border="0"  alt="detail" /></td>
+</tr>
+<td><img width="350px" src="./documentation/addrecipe.jpg" border="0" alt="addrecipe" /></td>
+    <td> <img width="350px" src="./documentation/profile.jpg" border="0"  alt="profile" /></td>
+</tr>
+<td><img width="350px" src="./documentation/profileLikedRecipe.jpg" border="0" alt="likedrecipe" /></td>
+    <td> <img width="350px" src="./documentation/editprofile.jpg" border="0"  alt="editprofile" /></td>
+</table>
+
+## Below are lists of modules used in this application:
+
+- [React JS](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Axios](https://axios-http.com/)
+- [Dotenv](https://www.npmjs.com/package/dotenv)
+- [SweetAlert2](https://sweetalert2.github.io/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
-In the project directory, you can run:
+### `npm -i`
+
+install the required modules
+
+## In the project directory, you can run:
 
 ### `npm start`
 
@@ -68,3 +126,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Related Project
+
+:rocket: [`Backend`](https://github.com/nluthfis/PijarFood)
+
+:rocket: [`React native`](https://github.com/nluthfis/mb_pijar_food)
+
+:rocket: [`Demo`]()

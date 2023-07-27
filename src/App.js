@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 import { store } from "./store";
 import { Provider } from "react-redux";
 import axios from "axios";
@@ -15,6 +14,8 @@ import Register from "./pages/Register";
 import Details from "./pages/Details";
 import AddRecipe from "./pages/AddRecipe";
 import Profile from "./pages/Profile";
+import ForgotPassword from "./pages/ForgotPassword";
+import EditProfile from "./pages/EditProfile";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,14 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/ForgotPassword",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "/EditProfile",
+    element: <EditProfile />,
   },
 ]);
 

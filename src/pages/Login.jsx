@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addAuth } from "../reducers/auth";
-
 import "../styles/auth.css";
 
 function Login() {
@@ -14,13 +12,13 @@ function Login() {
   const dispatch = useDispatch();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const state = useSelector((reducer) => reducer.auth);
+  const [showPassword, setShowPassword] = React.useState(false);
 
-  React.useEffect(() => {
-    if (localStorage.getItem("auth") || state.auth) {
+  useEffect(() => {
+    if (localStorage.getItem("auth")) {
       navigate("/profile");
     }
-  }, [state]);
+  }, []);
 
   const handeLogin = () => {
     axios
@@ -37,8 +35,8 @@ function Login() {
         }).then(() => {
           localStorage.setItem("auth", "true");
           localStorage.setItem("token", result?.data?.token);
-
-          dispatch(addAuth(result));
+          dispatch(addAuth(result.data));
+          navigate("/profile");
         });
       })
       .catch((error) => {
@@ -60,6 +58,10 @@ function Login() {
       });
   };
 
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div>
       <div className="row g-0">
@@ -68,9 +70,9 @@ function Login() {
         </div>
         <div className="col-md-5 col-xs-10 right d-flex flex-column justify-content-center">
           <div className="container">
-            <h1 className="text-center">Welcome</h1>
+            <h1 className="text-center mt-3">Welcome</h1>
             <p className="text-center text-secondary">
-              Log in into your exiting account
+              Log in into your existing account
             </p>
             <div className="row justify-content-center">
               <div className="col col-7">
@@ -80,7 +82,7 @@ function Login() {
                   }}
                 >
                   <div className="mb-3">
-                    <label for="email" className="form-label">
+                    <label htmlFor="email" className="form-label">
                       E-mail
                     </label>
                     <input
@@ -93,29 +95,32 @@ function Login() {
                     />
                   </div>
                   <div className="mb-3">
-                    <label for="password" className="form-label">
+                    <label htmlFor="password" className="form-label">
                       Password
                     </label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="password"
-                      name="password"
-                      placeholder="Password"
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
+                    <div className="row">
+                      <div className="col">
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          className="form-control"
+                          id="password"
+                          name="password"
+                          placeholder="Password"
+                          onChange={(e) => setPassword(e.target.value)}
+                        />
+                      </div>
+                      <div className="col-auto">
+                        <button
+                          type="button"
+                          className="btn btn-outline-secondary"
+                          onClick={handleTogglePassword}
+                        >
+                          {showPassword ? "Hide" : "Show"}
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <div className="mb-3 form-check">
-                    <input
-                      type="checkbox"
-                      className="form-check-input"
-                      id="termsConditions"
-                      name="termsConditions"
-                    />
-                    <label className="form-check-label">
-                      I agree to terms [&] conditions
-                    </label>
-                  </div>
+
                   <div className="d-grid">
                     <button
                       type="submit"
@@ -127,7 +132,7 @@ function Login() {
                   </div>
                   <p className="text-end fs-6 fw-medium mt-3">
                     <a
-                      href="./forgot-password.html"
+                      href="/ForgotPassword"
                       className="text-decoration-none text-black text-body-secondary"
                     >
                       Forgot Password?
@@ -141,9 +146,9 @@ function Login() {
               <Link
                 to="/register"
                 className="text-decoration-none"
-                style={{ color: " #efc81a" }}
+                style={{ color: " #efc81a", fontWeight: "bold" }}
               >
-                Sign up
+                Register
               </Link>
             </p>
           </div>

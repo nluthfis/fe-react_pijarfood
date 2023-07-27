@@ -1,35 +1,129 @@
 import React, { useState } from "react";
 import "../styles/auth.css";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     password: "",
     phoneNumber: "",
   });
-  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    let errorMessage = "";
+    switch (name) {
+      case "fullName":
+        if (value.trim() === "") {
+          errorMessage = "Name is required";
+        }
+        break;
+      case "email":
+        if (value.trim() === "") {
+          errorMessage = "Email is required";
+        } else if (!/\S+@\S+\.\S+/.test(value)) {
+          errorMessage = "Invalid email address";
+        }
+        break;
+      case "phoneNumber":
+        if (value.trim() === "") {
+          errorMessage = "Phone number is required";
+        } else if (!/^\d{10}$/.test(value)) {
+          errorMessage = "Invalid phone number";
+        }
+        break;
+      case "password":
+        if (value.trim() === "") {
+          errorMessage = "Password is required";
+        }
+        break;
+      default:
+        break;
+    }
+
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      if (formData.fullName.trim() === "") {
+        Swal.fire({
+          title: "Error",
+          text: "Name is required",
+          icon: "error",
+        });
+        return;
+      }
+      if (formData.email.trim() === "") {
+        Swal.fire({
+          title: "Error",
+          text: "Email is required",
+          icon: "error",
+        });
+        return;
+      }
+      if (!/\S+@\S+\.\S+/.test(formData.email)) {
+        Swal.fire({
+          title: "Error",
+          text: "Invalid email address",
+          icon: "error",
+        });
+        return;
+      }
+      if (formData.phoneNumber.trim() === "") {
+        Swal.fire({
+          title: "Error",
+          text: "Phone number is required",
+          icon: "error",
+        });
+        return;
+      }
+      if (formData.password.trim() === "") {
+        Swal.fire({
+          title: "Error",
+          text: "Password is required",
+          icon: "error",
+        });
+        return;
+      }
+
       const response = await axios.post(
-        "https://clean-ruby-cuttlefish.cyclic.app/profile",
+        `${process.env.REACT_APP_BASE_URL}/profile/register`,
         formData
       );
-      console.log(response.data);
-      navigate("/login");
+      Swal.fire({
+        title: "Register Success",
+        text: "Register Success",
+        icon: "success",
+      }).then(() => {
+        console.log(response.data);
+        navigate("/login");
+      });
     } catch (error) {
-      console.error(error);
+      if (error.response.data.message === "Email already exists") {
+        Swal.fire({
+          title: "Error",
+          text: "Email already exists",
+          icon: "error",
+        });
+      } else {
+        console.error(error);
+      }
     }
   };
+
   return (
     <div>
       <div className="row g-0">
@@ -37,15 +131,15 @@ const Register = () => {
           <img src="/img/logo.png" alt="img-logo" />
         </div>
         <div className="col-md-5 col-xs-10 right d-flex flex-column justify-content-center">
-          <h1 className="text-center">Let's Get Started !</h1>
+          <h1 className="text-center">Let's Get Started!</h1>
           <p className="text-center text-secondary">
-            Create new account to access all features
+            Create a new account to access all features
           </p>
           <div className="row justify-content-center">
             <div className="col col-7">
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label for="name" className="form-label">
+                  <label htmlFor="fullName" className="form-label">
                     Name
                   </label>
                   <input
@@ -59,7 +153,7 @@ const Register = () => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="email" className="form-label">
+                  <label htmlFor="email" className="form-label">
                     Email Address*
                   </label>
                   <input
@@ -73,7 +167,7 @@ const Register = () => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="phoneNumber" className="form-label">
+                  <label htmlFor="phoneNumber" className="form-label">
                     Phone Number
                   </label>
                   <input
@@ -87,53 +181,44 @@ const Register = () => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="password" className="form-label">
+                  <label htmlFor="password" className="form-label">
                     Create New Password
                   </label>
-                  <input
-                    type="password"
-                    className="form-control form-control-sm"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    placeholder="Create new password"
-                  />
-                </div>
-
-                <div className="mb-3 form-check">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    id="termsConditions"
-                    name="termsConditions"
-                  />
-                  <label className="form-check-label">
-                    I agree to terms [&] conditions
-                  </label>
+                  <div className="input-group">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      className="form-control form-control-sm"
+                      id="password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      placeholder="Create new password"
+                    />
+                    <div className="col-auto">
+                      <button
+                        type="button"
+                        className="btn btn-outline-secondary"
+                        onClick={handleTogglePassword}
+                      >
+                        {showPassword ? "Hide" : "Show"}
+                      </button>
+                    </div>
+                  </div>
                 </div>
                 <div className="d-grid">
                   <button type="submit" className="btn btn-warning">
-                    Sign Up
+                    Create Account
                   </button>
                 </div>
-                <p className="text-end">
-                  <a
-                    href="./forgot-password.html"
-                    className="text-decoration-none text-black"
-                  >
-                    Forgot Password?
-                  </a>
-                </p>
               </form>
             </div>
           </div>
           <p className="text-center">
-            Already have account?
+            Already have an account?{" "}
             <Link
               to="/login"
               className="text-decoration-none"
-              style={{ color: "#efc81a" }}
+              style={{ color: "#efc81a", fontWeight: "bold" }}
             >
               Login Here
             </Link>
@@ -143,4 +228,5 @@ const Register = () => {
     </div>
   );
 };
+
 export default Register;

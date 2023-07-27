@@ -1,9 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import "../styles/Navbar.css";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../reducers/auth";
 
 function Navbar() {
+  const isAuthenticated = localStorage.getItem("auth");
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state?.auth);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    dispatch(logout());
+    window.location.href = "/login";
+  };
+
   return (
     <div>
       <div className="container align-item-center mt-4">
@@ -40,17 +51,23 @@ function Navbar() {
                 </Link>
               </div>
               <div className="navbar-nav ms-auto">
-                {localStorage.getItem("auth") ? (
+                {isAuthenticated ? (
                   <>
-                    <Link
-                      className="nav-item nav-link"
-                      onClick={() => {
-                        localStorage.clear();
-                        window.location.href = "/login";
-                      }}
-                    >
-                      Logout
-                    </Link>
+                    <div className="navbar-nav">
+                      <Link
+                        to="/EditProfile"
+                        className="nav-item nav-link active"
+                      >
+                        Edit Profile
+                      </Link>
+                      <Link
+                        to="/"
+                        className="nav-item nav-link active "
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </Link>
+                    </div>
                   </>
                 ) : (
                   <>

@@ -7,8 +7,8 @@ body {
   margin: 0;
   padding: 0;
   background-image: linear-gradient(
-      rgba(223, 136, 108, 0.76),
-      rgba(223, 136, 108, 0.76)
+      rgba(244, 217, 98, 0.3),
+      rgba(244, 217, 98, 0.3)
     ),
     url("/public/img/back.jpg");
   background-size: cover;
@@ -26,10 +26,12 @@ h1 {
     display: none;
   }
   .right {
-    width: 100%;
+    width: 90%;
     position: absolute;
     margin-top: 25%;
-
-    background-color: wheat;
+    background-color: white;
+    margin-right: 5%;
+    margin-left: 5%;
+    border-radius: 10px;
   }
 }
