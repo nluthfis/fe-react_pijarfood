@@ -84,6 +84,19 @@ function Details() {
         <div className="container py-5">
           <div className="row">
             <div className="col-md-5 col-xs-10">
+              <div className="d-md-none">
+                {/* Image for mobile view */}
+                <img
+                  src={recipesData.data.photo}
+                  className="img-fluid rounded"
+                  style={{
+                    objectFit: "cover",
+                    width: "100%",
+                    height: "50vh",
+                  }}
+                  alt="food-img"
+                />
+              </div>
               <h1
                 className="text-center text-primary"
                 style={{ textTransform: "capitalize" }}
@@ -93,6 +106,9 @@ function Details() {
               <h4 className="text-center text-primary">
                 {recipesData.data.category}
               </h4>
+              <p className="text-center text-primary">
+                {recipesData.data.description}
+              </p>
               <div className="d-flex justify-content-center">
                 <div className="d-flex flex-row align-items-center mb-3">
                   <button
@@ -120,7 +136,8 @@ function Details() {
             </div>
 
             <div className="col-md-6 col-xs-10">
-              <div className="col col-xs-10 order-1 order-md-1 h-100">
+              <div className="col col-xs-10 d-none d-md-block">
+                {/* Image for medium and larger screens */}
                 <img
                   src={recipesData.data.photo}
                   className="img-fluid rounded"

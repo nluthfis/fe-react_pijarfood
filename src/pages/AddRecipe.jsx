@@ -16,6 +16,7 @@ function AddRecipe() {
   const ingredients = useRef("");
   const videoLink = useRef("");
   const category = useRef("");
+  const description = useRef("");
   console.log(tittle.current?.value);
   const handleSubmit = async (e) => {
     try {
@@ -26,6 +27,7 @@ function AddRecipe() {
       formData.append("videoLink", videoLink.current.value);
       formData.append("category", category.current.value);
       formData.append("photo", recipePhoto);
+      formData.append("description", description.current.value);
       console.log(formData);
       console.log(formData);
       await axios
@@ -135,6 +137,16 @@ function AddRecipe() {
                 ref={category}
                 id="Category"
                 placeholder="Category"
+              />
+              <textarea
+                type="text"
+                className="form-control mb-3"
+                name="description"
+                ref={description}
+                id="Description"
+                cols="35"
+                rows="5"
+                placeholder="Description"
               />
               <button type="submit" className="btn btn-warning mx-auto d-block">
                 Post

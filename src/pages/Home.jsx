@@ -33,7 +33,6 @@ function App() {
         const response = await axios.get(
           `${process.env.REACT_APP_BASE_URL}/recipes?popular=popular`
         );
-        console.log(response?.data);
         setRecipeList(response?.data?.data);
         dispatch(storeRecipes(response?.data?.data));
       } catch (error) {
@@ -92,7 +91,7 @@ function App() {
               </div>
             </div>
             <div className="col-1"></div>
-            <div className="col-md-4 col-xs-10 order-1 order-md-1">
+            <div className="col-md-4 col-lg-4 col-xs-8 col-sm-8 order-1 order-md-1">
               <img
                 className="rounded img-fluid mx-auto d-block"
                 src="/img/1.jpg"
@@ -134,10 +133,9 @@ function App() {
                   >
                     {item.tittle}
                   </h3>
-                  <hr style={{ marginLeft: "10%", width: "20%" }} />
-                  {/* <p className="text-center text-lg-start">
-                    Oseng Ikan Teri Dikombinasikan dengan kentang
-                  </p> */}
+                  <h6 className="text-center text-lg-start">{item.category}</h6>
+                  <p>{item.description}</p>
+                  <hr className="d-lg-block mx-auto" style={{ width: "20%" }} />
                   <div className="text-center text-lg-start">
                     <Link
                       to={`/details/${item.tittle
@@ -186,14 +184,12 @@ function App() {
                   >
                     {item.tittle}
                   </h3>
+                  <h6 className="text-center text-lg-start">{item.category}</h6>
+                  <p>{item.description}</p>
                   <hr
-                    className="text-center text-lg-start"
-                    style={{ marginLeft: "10%", width: "20%" }}
+                    className="d-lg-block mx-auto text-lg-start"
+                    style={{ width: "20%" }}
                   />
-                  {/* <p className="text-center text-lg-start">
-                    Paduan gulai daging sapi dengan campuran nangka padang
-                    dibasuh bumbu kuning
-                  </p> */}
                   <div className="text-center text-lg-start">
                     <Link
                       to={`/details/${item.tittle
