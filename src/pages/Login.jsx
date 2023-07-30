@@ -74,7 +74,7 @@ function Login() {
               Log in into your existing account
             </p>
             <div className="row justify-content-center">
-              <div className="col col-7">
+              <div className="col col-9">
                 <form
                   onSubmit={(event) => {
                     event.preventDefault();
@@ -123,7 +123,7 @@ function Login() {
                   <div className="d-grid">
                     <button
                       type="submit"
-                      className="btn btn-warning"
+                      className="btn btn-warning mt-3"
                       onClick={handeLogin}
                     >
                       Log in
@@ -140,7 +140,7 @@ function Login() {
                 </form>
               </div>
             </div>
-            <p className="text-center">
+            <p className="text-center mt-2">
               Don't have an account?
               <Link
                 to="/register"

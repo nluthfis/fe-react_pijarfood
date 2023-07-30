@@ -130,12 +130,12 @@ const Register = () => {
           <img src="/img/logo.png" alt="img-logo" />
         </div>
         <div className="col-md-5 col-xs-10 right d-flex flex-column justify-content-center">
-          <h1 className="text-center">Let's Get Started!</h1>
-          <p className="text-center text-secondary">
+          <h1 className="text-center mt-3">Let's Get Started!</h1>
+          <p className="text-center text-secondary m-2">
             Create a new account to access all features
           </p>
           <div className="row justify-content-center">
-            <div className="col col-7">
+            <div className="col col-9">
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="fullName" className="form-label">
@@ -193,7 +193,7 @@ const Register = () => {
                       onChange={handleChange}
                       placeholder="Create new password"
                     />
-                    <div className="col-auto">
+                    <div className="col">
                       <button
                         type="button"
                         className="btn btn-outline-secondary"
@@ -205,14 +205,14 @@ const Register = () => {
                   </div>
                 </div>
                 <div className="d-grid">
-                  <button type="submit" className="btn btn-warning">
+                  <button type="submit" className="btn btn-warning mt-3">
                     Create Account
                   </button>
                 </div>
               </form>
             </div>
           </div>
-          <p className="text-center">
+          <p className="text-center mt-2">
             Already have an account?{" "}
             <Link
               to="/login"
