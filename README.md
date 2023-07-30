@@ -144,4 +144,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 :rocket: [`React native`](https://github.com/nluthfis/mb_pijar_food)
 
-:rocket: [`Demo`](fe-react-pijarfood.vercel.app)
+:rocket: [`Demo`](fe-react-pijarfood-c2qoebphn-nluthfis.vercel.app)
