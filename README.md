@@ -25,6 +25,17 @@ Pijar Food is a platform for viewing and sharing food recipes developed with Rea
    |── README.md       # Readme
 ```
 
+### Features
+
+<ul>
+<li>User authentication (login, register)</li>
+<li>View recipes and their details</li>
+<li>Add new recipes</li>
+<li>Like and comment/review recipes</li>
+<li>Delete recipes</li>
+<li>Edit profile</li>
+</ul>
+
 ### Screenshots
 
 <table>
@@ -133,4 +144,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 :rocket: [`React native`](https://github.com/nluthfis/mb_pijar_food)
 
-:rocket: [`Demo`]()
+:rocket: [`Demo`](fe-react-pijarfood.vercel.app)
