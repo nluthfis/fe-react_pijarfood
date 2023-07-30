@@ -31,12 +31,10 @@ function Profile() {
         })
         .then((result) => {
           setRecipeList(result?.data?.data);
-          console.log(result?.data?.data);
           axios
             .get(`${process.env.REACT_APP_BASE_URL}/liked/recipes`, { headers })
             .then((likedResult) => {
               setLikedRecipes(likedResult?.data?.data);
-              console.log(likedResult?.data?.data);
             })
             .catch((error) => {
               console.error("Error fetching liked recipes:", error);
@@ -55,7 +53,6 @@ function Profile() {
   const handleRemoveRecipe = async (event) => {
     event.preventDefault();
     const recipeId = Number(event.target.dataset.recipeId);
-    console.log("recipeId:", recipeId);
     const token = localStorage.getItem("auth");
     try {
       await axios.delete(
@@ -70,8 +67,6 @@ function Profile() {
       setRecipeList((prevList) =>
         prevList.filter((item) => item.id !== recipeId)
       );
-
-      console.log(recipeId);
     } catch (error) {
       console.error("Error deleting recipe:", error);
     }

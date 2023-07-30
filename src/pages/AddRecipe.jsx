@@ -28,8 +28,6 @@ function AddRecipe() {
       formData.append("category", category.current.value);
       formData.append("photo", recipePhoto);
       formData.append("description", description.current.value);
-      console.log(formData);
-      console.log(formData);
       await axios
         .post(`${process.env.REACT_APP_BASE_URL}/recipes`, formData, {
           headers: {
@@ -38,7 +36,6 @@ function AddRecipe() {
           },
         })
         .then((res) => {
-          console.log(res.data);
           navigate("/");
         });
     } catch (error) {

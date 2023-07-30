@@ -108,7 +108,6 @@ const Register = () => {
         text: "Register Success",
         icon: "success",
       }).then(() => {
-        console.log(response.data);
         navigate("/login");
       });
     } catch (error) {

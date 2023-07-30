@@ -27,7 +27,6 @@ function Login() {
         password: password,
       })
       .then((result) => {
-        console.log(result);
         Swal.fire({
           title: "Login Success",
           text: "Login Success",

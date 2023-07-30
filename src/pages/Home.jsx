@@ -72,10 +72,10 @@ function App() {
         <div className="container">
           <div className="row flex-column flex-lg-row mt-5">
             <div className="col-md-6 col-xs-10 align-self-center order-2 order-md-1 ">
-              <h1 className="text-center text-lg-start text-primary mt-5">
+              <h2 className="text-center text-lg-start text-primary mt-5">
                 Discover Recipe & <br />
                 Delicious Food
-              </h1>
+              </h2>
               <div className="search-bar">
                 <input
                   className="search-box form-control form-control-lg mt-5"
