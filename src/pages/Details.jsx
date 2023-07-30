@@ -82,16 +82,14 @@ function Details() {
       <Navbar />
       <section id="content">
         <div className="container py-5">
-          <div className="row">
+          <div className="row d-flex justify-content-center">
             <div className="col-md-5 col-xs-10">
               <div className="d-md-none">
-                {/* Image for mobile view */}
                 <img
                   src={recipesData.data.photo}
                   className="img-fluid rounded"
                   style={{
                     objectFit: "cover",
-                    width: "100%",
                     height: "50vh",
                   }}
                   alt="food-img"
@@ -137,7 +135,6 @@ function Details() {
 
             <div className="col-md-6 col-xs-10">
               <div className="col col-xs-10 d-none d-md-block">
-                {/* Image for medium and larger screens */}
                 <img
                   src={recipesData.data.photo}
                   className="img-fluid rounded"

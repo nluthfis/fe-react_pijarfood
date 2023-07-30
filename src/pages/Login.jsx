@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addAuth } from "../reducers/auth";
 import "../styles/auth.css";
 

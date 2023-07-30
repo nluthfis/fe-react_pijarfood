@@ -183,17 +183,19 @@ const Register = () => {
                   <label htmlFor="password" className="form-label">
                     Create New Password
                   </label>
-                  <div className="input-group">
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      className="form-control form-control-sm"
-                      id="password"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleChange}
-                      placeholder="Create new password"
-                    />
+                  <div className="row">
                     <div className="col">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        className="form-control"
+                        id="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        placeholder="Create new password"
+                      />
+                    </div>
+                    <div className="col-auto">
                       <button
                         type="button"
                         className="btn btn-outline-secondary"

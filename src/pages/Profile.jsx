@@ -144,7 +144,10 @@ function Profile() {
                               }}
                             >
                               <div>
-                                <h3 className="popular-menu-list">
+                                <h3
+                                  className="popular-menu-list"
+                                  style={{ textTransform: "capitalize" }}
+                                >
                                   {item.tittle}
                                 </h3>
                                 <button
@@ -189,7 +192,10 @@ function Profile() {
                                   backgroundImage: `url(${item.photo})`,
                                 }}
                               >
-                                <h3 className="popular-menu-list">
+                                <h3
+                                  className="popular-menu-list"
+                                  style={{ textTransform: "capitalize" }}
+                                >
                                   {item.tittle}
                                 </h3>
                               </div>
