@@ -112,6 +112,9 @@ function AddRecipe() {
                 id="tittle"
                 placeholder="Tittle"
               />
+              <p>
+                Please include a comma followed by a space for each ingredient.
+              </p>
               <textarea
                 className="form-control mb-3"
                 name="ingredients"
