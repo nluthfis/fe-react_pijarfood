@@ -18,6 +18,7 @@ function EditProfile() {
   const emailRef = useRef();
   const phoneRef = useRef();
   const passwordRef = useRef();
+  const [isLoading, setIsLoading] = useState(false);
   // const photoNow = useSelector((state) => state.auth.auth?.data[0].photo);
   // console.log(photoNow);
   const handlePhotoChange = (e) => {
@@ -32,7 +33,6 @@ function EditProfile() {
     }
   };
   const handleSubmitPhoto = async (e) => {
-    e.preventDefault();
     try {
       const formData = new FormData();
       formData.append("photo", file);
@@ -46,18 +46,14 @@ function EditProfile() {
           },
         }
       );
-      console.log(response?.data?.data?.photo);
       setPhoto(response?.data?.data?.photo);
       dispatch(updateUserPhoto(response?.data?.data?.photo));
-      navigate("/profile");
       setFile(null);
     } catch (error) {
       console.error(error);
-      console.log(error.response);
     }
   };
   const handleSubmitProfile = async (e) => {
-    e.preventDefault();
     try {
       const response = await axios.patch(
         `${process.env.REACT_APP_BASE_URL}/profile`,
@@ -73,11 +69,38 @@ function EditProfile() {
           },
         }
       );
-      console.log(response);
       dispatch(addAuth(response?.data));
     } catch (error) {
       console.error(error);
-      console.log(error.response);
+    }
+  };
+  const handleEditAll = async (event) => {
+    setIsLoading(true);
+    event.preventDefault();
+    const submitPhoto = async () => {
+      if (file) {
+        return await handleSubmitPhoto();
+      }
+    };
+    const submitProfile = async () => {
+      if (
+        !(
+          nameRef.current === "" ||
+          emailRef.current === "" ||
+          phoneRef.current === "" ||
+          passwordRef.current === ""
+        )
+      )
+        return await handleSubmitProfile();
+    };
+    try {
+      await Promise.all([submitPhoto(), submitProfile()]).then((res) => {
+        navigate("/profile");
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -86,47 +109,35 @@ function EditProfile() {
       <Navbar />
       <div className="container">
         <div className="row justify-content-center">
-          <h1 className="text-center">Edit Picture</h1>
-          <div className="col col-7">
-            <img
-              src={photo}
-              alt="avatar"
-              className="rounded-circle mx-auto d-block"
-              style={{
-                width: "20vh",
-                height: "20vh",
-                objectFit: "cover",
-              }}
-            />
-            <div className="d-flex justify-content-center m-3">
-              <input
-                className="text-center "
-                type="file"
-                id="file-input"
-                name="file-input"
-                onChange={handlePhotoChange}
-              />
-              <label
-                id="file-input-label "
-                htmlFor="file-input"
-                className=" btn btn-warning"
-              >
-                Select a File
-              </label>
-            </div>
-            <div className="d-flex justify-content-center m-3">
-              <button
-                type="button"
-                className="btn btn-warning"
-                onClick={handleSubmitPhoto}
-              >
-                Change Photo
-              </button>
-            </div>
-          </div>
           <h1 className="text-center">Edit Profile</h1>
           <div className="col col-7">
-            <form onSubmit={handleSubmitProfile}>
+            <form onSubmit={handleEditAll}>
+              <img
+                src={photo}
+                alt="avatar"
+                className="rounded-circle mx-auto d-block"
+                style={{
+                  width: "20vh",
+                  height: "20vh",
+                  objectFit: "cover",
+                }}
+              />
+              <div className="d-flex justify-content-center m-3">
+                <input
+                  className="text-center "
+                  type="file"
+                  id="file-input"
+                  name="file-input"
+                  onChange={handlePhotoChange}
+                />
+                <label
+                  id="file-input-label "
+                  htmlFor="file-input"
+                  className=" btn btn-warning"
+                >
+                  Select a File
+                </label>
+              </div>
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">
                   Name
@@ -178,11 +189,19 @@ function EditProfile() {
                   name="password"
                   onChange={(e) => (passwordRef.current = e.target.value)}
                   placeholder="Create new password"
+                  autoComplete="off"
                 />
               </div>
 
-              <button type="submit" className="btn btn-warning d-block mx-auto">
+              {/* <button
+                type="submit"
+                className="btn btn-warning d-block mx-auto"
+                onSubmit={handleSubmitProfile}
+              >
                 Change Profile
+              </button> */}
+              <button type="submit" className="btn btn-warning d-block mx-auto">
+                {isLoading ? "Loading..." : "Save Changes"}
               </button>
             </form>
           </div>

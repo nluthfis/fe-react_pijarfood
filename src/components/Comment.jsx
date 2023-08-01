@@ -32,7 +32,7 @@ function Comment(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsLoading(true); // Set loading state to true
+    setIsLoading(true);
     try {
       if (!auth) {
         setErrorMessage("Please login first.");

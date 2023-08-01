@@ -13,7 +13,6 @@ export const authSlice = createSlice({
     },
     updateUserPhoto: (state, action) => {
       if (state.auth) {
-        console.log(state.auth.photo);
         state.auth.data[0].photo = action.payload;
       }
     },

@@ -17,8 +17,9 @@ function AddRecipe() {
   const videoLink = useRef("");
   const category = useRef("");
   const description = useRef("");
-  console.log(tittle.current?.value);
+  const [isLoading, setIsLoading] = React.useState(false);
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     try {
       e.preventDefault();
       const formData = new FormData();
@@ -40,6 +41,8 @@ function AddRecipe() {
         });
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -48,7 +51,7 @@ function AddRecipe() {
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0];
       setImage(URL.createObjectURL(img));
-      setRecipePhoto(img); // Store the file in the state
+      setRecipePhoto(img);
     }
   };
 
@@ -58,9 +61,8 @@ function AddRecipe() {
     }
   }, []);
   return (
-    <div>
+    <div style={{ overflowX: "none" }}>
       <Navbar />
-
       <div className="col d-flex flex-column">
         <div className="row py-5 justify-content-center">
           <div className="col-8">
@@ -146,7 +148,7 @@ function AddRecipe() {
                 placeholder="Description"
               />
               <button type="submit" className="btn btn-warning mx-auto d-block">
-                Post
+                {isLoading ? "Loading..." : "Add Recipe"}
               </button>
             </form>
           </div>

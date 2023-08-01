@@ -87,7 +87,10 @@ function Profile() {
               src={auth.auth.data[0].photo}
               alt="avatar"
             />
-            <p className="text-center fw-bold">
+            <p
+              className="text-center fw-bold mt-3"
+              style={{ fontSize: "20px" }}
+            >
               {auth?.auth?.data[0]?.fullName}
             </p>
           </div>

@@ -13,8 +13,8 @@ const Register = () => {
     password: "",
     phoneNumber: "",
   });
-
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -56,6 +56,7 @@ const Register = () => {
   };
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     try {
       if (formData.fullName.trim() === "") {
@@ -120,6 +121,8 @@ const Register = () => {
       } else {
         console.error(error);
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -191,6 +194,7 @@ const Register = () => {
                         id="password"
                         name="password"
                         value={formData.password}
+                        autoComplete="off"
                         onChange={handleChange}
                         placeholder="Create new password"
                       />
@@ -208,7 +212,7 @@ const Register = () => {
                 </div>
                 <div className="d-grid">
                   <button type="submit" className="btn btn-warning mt-3">
-                    Create Account
+                    {isLoading ? "Loading..." : "Create Account"}
                   </button>
                 </div>
               </form>

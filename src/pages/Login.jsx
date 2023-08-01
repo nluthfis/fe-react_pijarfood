@@ -13,6 +13,7 @@ function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("auth")) {
@@ -21,6 +22,7 @@ function Login() {
   }, []);
 
   const handeLogin = () => {
+    setIsLoading(true);
     axios
       .post(`${process.env.REACT_APP_BASE_URL}/auth/login`, {
         email: email,
@@ -54,6 +56,9 @@ function Login() {
           text: errorMessage,
           icon: "error",
         });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -105,6 +110,7 @@ function Login() {
                           id="password"
                           name="password"
                           placeholder="Password"
+                          autoComplete="off"
                           onChange={(e) => setPassword(e.target.value)}
                         />
                       </div>
@@ -126,7 +132,7 @@ function Login() {
                       className="btn btn-warning mt-3"
                       onClick={handeLogin}
                     >
-                      Log in
+                      {isLoading ? "Loading..." : "Log in"}
                     </button>
                   </div>
                   <p className="text-end fs-6 fw-medium mt-3">

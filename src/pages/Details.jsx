@@ -83,32 +83,34 @@ function Details() {
       <section id="content">
         <div className="container py-5">
           <div className="row d-flex justify-content-center">
-            <div className="col-md-5 col-xs-10">
-              <div className="d-md-none">
-                <img
-                  src={recipesData.data.photo}
-                  className="img-fluid rounded"
-                  style={{
-                    objectFit: "cover",
-                    height: "50vh",
-                  }}
-                  alt="food-img"
-                />
-              </div>
+            <div className="col-md-5 col-xs-12">
+              <img
+                src={recipesData.data.photo}
+                className="img-fluid rounded mb-3"
+                style={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "50vh",
+                }}
+                alt="food-img"
+              />
+            </div>
+            <div className="col-md-5 col-xs-12">
               <h1
-                className="text-center text-primary"
+                className="text-primary"
                 style={{ textTransform: "capitalize" }}
               >
                 {recipesData.data.tittle}
               </h1>
-              <h4 className="text-center text-primary">
+              <h4
+                className="text-primary"
+                style={{ textTransform: "capitalize" }}
+              >
                 {recipesData.data.category}
               </h4>
-              <p className="text-center text-primary">
-                {recipesData.data.description}
-              </p>
+              <p className="text-primary">{recipesData.data.description}</p>
               <div className="d-flex justify-content-center">
-                <div className="d-flex flex-row align-items-center mb-3">
+                <div className="d-flex flex-row mb-3">
                   <button
                     type="button"
                     className={`btn ${
@@ -124,28 +126,11 @@ function Details() {
                     style={{ width: "15vh" }}
                     href={recipesData?.data?.videoLink}
                   >
-                    Video Link
+                    Video
                   </a>
                 </div>
               </div>
-              {!auth.auth && (
-                <p className="text-danger text-center">{loginMessage}</p>
-              )}
-            </div>
-
-            <div className="col-md-6 col-xs-10">
-              <div className="col col-xs-10 d-none d-md-block">
-                <img
-                  src={recipesData.data.photo}
-                  className="img-fluid rounded"
-                  style={{
-                    objectFit: "cover",
-                    width: "100%",
-                    height: "50vh",
-                  }}
-                  alt="food-img"
-                />
-              </div>
+              {!auth.auth && <p className="text-center">{loginMessage}</p>}
             </div>
           </div>
 
