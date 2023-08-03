@@ -40,9 +40,9 @@ Pijar Food is a platform for viewing and sharing food recipes developed with Rea
 
 <table>
 <tr>
-<td>Login</td>
-<td>Register</td>
-<td>ForgotPassword</td>
+<td>Login Pages</td>
+<td>Register Pages</td>
+<td>Forgot Password</td>
 </tr>
 <tr>
 <td><img width="350px" src="./documentation/login.jpg" border="0" alt="Login" /></td>
@@ -50,23 +50,23 @@ Pijar Food is a platform for viewing and sharing food recipes developed with Rea
     <td> <img width="350px" src="./documentation/forgotpassword.jpg" border="0"  alt="ForgotPassword" /></td>
 </tr>
 <tr>
-<td>home</td>
-<td>detail</td>
+<td>Home Pages</td>
+<td>Details Pages</td>
 </tr>
 <tr>
 <td><img width="350px" src="./documentation/home.jpg" border="0" alt="home" /></td>
     <td> <img width="350px" src="./documentation/details.jpg" border="0"  alt="detail" /></td>
 </tr>
 <tr>
-<td>addrecipe</td>
-<td>profile</td>
+<td>Add Recipe Pages</td>
+<td>Profile Pages</td>
 </tr>
 <td><img width="350px" src="./documentation/addrecipe.jpg" border="0" alt="addrecipe" /></td>
     <td> <img width="350px" src="./documentation/profile.jpg" border="0"  alt="profile" /></td>
 </tr>
 <tr>
-<td>likedrecipe</td>
-<td>editprofile</td>
+<td>Liked Recipe </td>
+<td>Edit Profile Pages</td>
 </tr>
 <td><img width="350px" src="./documentation/profileLikedRecipe.jpg" border="0" alt="likedrecipe" /></td>
     <td> <img width="350px" src="./documentation/editprofile.jpg" border="0"  alt="editprofile" /></td>
