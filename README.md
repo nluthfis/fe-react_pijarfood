@@ -42,7 +42,7 @@ Pijar Food is a platform for viewing and sharing food recipes developed with Rea
 <tr>
 <td>Login Pages</td>
 <td>Register Pages</td>
-<td>Forgot Password</td>
+<td>Forgot Password Pages</td>
 </tr>
 <tr>
 <td><img width="350px" src="./documentation/login.jpg" border="0" alt="Login" /></td>
@@ -65,7 +65,7 @@ Pijar Food is a platform for viewing and sharing food recipes developed with Rea
     <td> <img width="350px" src="./documentation/profile.jpg" border="0"  alt="profile" /></td>
 </tr>
 <tr>
-<td>Liked Recipe </td>
+<td>Liked Recipe Profile Pages</td>
 <td>Edit Profile Pages</td>
 </tr>
 <td><img width="350px" src="./documentation/profileLikedRecipe.jpg" border="0" alt="likedrecipe" /></td>
