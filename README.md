@@ -158,8 +158,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## Related Project
 
-:rocket: [`Backend`](https://github.com/nluthfis/PijarFood)
+:rocket: [`Backend`](https://github.com/nluthfis/pijar_food_be)
 
 :rocket: [`React native`](https://github.com/nluthfis/pijar_food_mobile)
 
-:rocket: [`Demo`](https://fe-react-pijarfood.vercel.app)
+:rocket: [`Demo`](https://pijar-food-web.vercel.app)
