@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { storeRecipes } from "../reducers/recipesSlice";
 
 import "../styles/Home.css";
 import Navbar from "../components/navbar";
@@ -10,11 +7,12 @@ import SearchBar from "../components/home/SearchBar";
 import RecipeFetcher from "../components/home/api/RecipeFetcher";
 import RecipeCard from "../components/home/RecipeCard";
 import NewRecipeFetcher from "../components/home/api/NewRecipeFetcher";
+import PopularRecipeSection from "../components/home/PopularRecipeSection";
+import Pagination from "../components/home/Pagination";
 
 function App() {
   const [recipeList, setRecipeList] = useState([]);
   const [newRecipeList, setNewRecipeList] = useState([]);
-  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
   const totalPages = Math.ceil(recipeList.length / itemsPerPage);
@@ -85,65 +83,13 @@ function App() {
         </div>
         <div className="bg_yellow_2"></div>
       </section>
-
-      <section id="popular-recipe">
-        <div className="container mt-5 mb-5">
-          <h2 className="mb-5 subtitle">Popular Recipe</h2>
-
-          <div className="row text-decoration-none">
-            {currentItems.map((item) => (
-              <div className="col-md-3 col-xs-12 col-sm-12 mb-4" key={item.id}>
-                <Link
-                  className="text-decoration-none"
-                  to={`/details/${item.tittle
-                    ?.toLowerCase()
-                    ?.split(" ")
-                    ?.join("-")}`}
-                  state={{ data: item }}
-                >
-                  <div
-                    className="menu-background text-decoration-none"
-                    style={{
-                      backgroundImage: `url(${item.photo})`,
-                    }}
-                  >
-                    <h3
-                      className="popular-menu-list"
-                      style={{ textTransform: "capitalize" }}
-                    >
-                      {item.tittle}
-                    </h3>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
-          {/* Pagination */}
-          <ul className="pagination ">
-            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
-              (pageNumber) => (
-                <li
-                  key={pageNumber}
-                  className={`page-item ${
-                    pageNumber === currentPage ? "active" : ""
-                  }`}
-                >
-                  <button
-                    className="page-link me-2"
-                    style={{
-                      backgroundColor: "#ffc107",
-                      borderColor: "#ffc107",
-                      color: "#fff",
-                    }}
-                    onClick={() => handlePageChange(pageNumber)}
-                  >
-                    {pageNumber}
-                  </button>
-                </li>
-              )
-            )}
-          </ul>
-        </div>
+      <section>
+        <PopularRecipeSection currentItems={currentItems} />
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          handlePageChange={handlePageChange}
+        />
       </section>
 
       <Footer className="mt-0" />
