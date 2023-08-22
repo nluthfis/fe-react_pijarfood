@@ -83,8 +83,14 @@ function App() {
         </div>
         <div className="bg_yellow_2"></div>
       </section>
-      <section>
-        <PopularRecipeSection currentItems={currentItems} />
+      <section id="popular-recipe">
+        <div className="container mt-5 mb-5">
+          <h2 className="mb-5 subtitle">Popular Recipe</h2>
+          <div className="row text-decoration-none">
+            <PopularRecipeSection currentItems={currentItems} />
+          </div>
+        </div>
+
         <Pagination
           totalPages={totalPages}
           currentPage={currentPage}
