@@ -3,18 +3,13 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import { useSelector } from "react-redux";
-
 import { Link, useNavigate } from "react-router-dom";
-
-import axios from "axios";
+import { getProfileData, getLikedRecipes, deleteRecipe } from "../api/Profile";
 
 function Profile() {
   const navigate = useNavigate();
-  const [profile, setProfile] = useState(null);
   const [recipeList, setRecipeList] = useState([]);
-  const [show, setShow] = useState(false);
   const auth = useSelector((state) => state?.auth);
-  const [photo, setPhoto] = useState(profile?.photo);
   const [likedRecipes, setLikedRecipes] = useState([]);
 
   useEffect(() => {
@@ -22,26 +17,16 @@ function Profile() {
       navigate("/login");
     } else {
       const token = localStorage.getItem("auth");
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-      axios
-        .get(`${process.env.REACT_APP_BASE_URL}/recipes/profile/me`, {
-          headers,
-        })
+      getProfileData(token)
         .then((result) => {
-          setRecipeList(result?.data?.data);
-          axios
-            .get(`${process.env.REACT_APP_BASE_URL}/liked/recipes`, { headers })
-            .then((likedResult) => {
-              setLikedRecipes(likedResult?.data?.data);
-            })
-            .catch((error) => {
-              console.error("Error fetching liked recipes:", error);
-            });
+          setRecipeList(result);
+          return getLikedRecipes(token);
+        })
+        .then((likedResult) => {
+          setLikedRecipes(likedResult);
         })
         .catch((error) => {
-          console.error("Error fetching recipe list:", error);
+          console.error("Error fetching data:", error);
         });
     }
   }, []);
@@ -55,15 +40,7 @@ function Profile() {
     const recipeId = Number(event.target.dataset.recipeId);
     const token = localStorage.getItem("auth");
     try {
-      await axios.delete(
-        `${process.env.REACT_APP_BASE_URL}/recipes/${recipeId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      // Update the recipeList state by removing the deleted item
+      await deleteRecipe(recipeId, token);
       setRecipeList((prevList) =>
         prevList.filter((item) => item.id !== recipeId)
       );

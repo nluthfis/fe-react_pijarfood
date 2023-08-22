@@ -1,23 +1,83 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../styles/AddRecipe.css";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useSelector } from "react-redux";
+import { addRecipe } from "../api/AddRecipe";
 
 function AddRecipe() {
   const navigate = useNavigate();
-  const [bgUploadPhoto, setBgPhoto] = React.useState(
-    "/images/add-photo-form.png"
-  );
-  const [recipePhoto, setRecipePhoto] = React.useState("");
+  const bgUploadPhoto = "/images/add-photo-form.png";
+  const [recipePhoto, setRecipePhoto] = useState("");
   const tittle = useRef("");
   const ingredients = useRef("");
   const videoLink = useRef("");
   const category = useRef("");
   const description = useRef("");
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const categoryList = [
+    {
+      key: "Soup",
+      value: "Soup",
+    },
+    {
+      key: "Rice",
+      value: "Rice",
+    },
+    {
+      key: "Salad",
+      value: "Salad",
+    },
+    {
+      key: "Noodle",
+      value: "Noodle",
+    },
+    {
+      key: "Drink",
+      value: "Drink",
+    },
+    {
+      key: "Pizza",
+      value: "Pizza",
+    },
+    {
+      key: "Burger",
+      value: "Burger",
+    },
+    {
+      key: "CupCake",
+      value: "CupCake",
+    },
+    {
+      key: "Sandwich",
+      value: "Sandwich",
+    },
+    {
+      key: "Taco",
+      value: "Taco",
+    },
+    {
+      key: "Dumpling",
+      value: "Dumpling",
+    },
+    {
+      key: "Nugget",
+      value: "Nugget",
+    },
+    {
+      key: "Porridge",
+      value: "Porridge",
+    },
+    {
+      key: "Seafood",
+      value: "Seafood",
+    },
+    {
+      key: "Sushi",
+      value: "Sushi",
+    },
+  ];
+
   const handleSubmit = async (e) => {
     setIsLoading(true);
     try {
@@ -29,16 +89,8 @@ function AddRecipe() {
       formData.append("category", category.current.value);
       formData.append("photo", recipePhoto);
       formData.append("description", description.current.value);
-      await axios
-        .post(`${process.env.REACT_APP_BASE_URL}/recipes`, formData, {
-          headers: {
-            Authorization: localStorage.getItem("token"),
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((res) => {
-          navigate("/");
-        });
+      await addRecipe(formData);
+      navigate("/");
     } catch (error) {
       console.log(error);
     } finally {
@@ -55,7 +107,7 @@ function AddRecipe() {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!localStorage.getItem("auth")) {
       navigate("/login");
     }
@@ -74,7 +126,7 @@ function AddRecipe() {
                     type="file"
                     name="photo"
                     onChange={handleFileChange}
-                    accept="image/*,.pdf"
+                    accept="image/*"
                     style={{
                       display: "none",
                       backgroundImage: `url(${bgUploadPhoto})`,
@@ -132,14 +184,20 @@ function AddRecipe() {
                 id="videoLink"
                 placeholder="Videos"
               />
-              <input
-                type="text"
+              <select
                 className="form-control mb-3"
                 name="category"
                 ref={category}
                 id="Category"
                 placeholder="Category"
-              />
+              >
+                <option value="">Select a category</option>
+                {categoryList.map((category) => (
+                  <option key={category.key} value={category.value}>
+                    {category.value}
+                  </option>
+                ))}
+              </select>
               <textarea
                 type="text"
                 className="form-control mb-3"

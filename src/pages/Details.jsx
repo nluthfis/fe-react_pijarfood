@@ -3,12 +3,11 @@ import { useLocation } from "react-router";
 import "../styles/Details.css";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import Comment from "../components/Comment";
+import { getLikes, likeRecipe, unlikeRecipe } from "../api/Likes";
 
 function Details() {
-  const [currentList, setCurrentList] = useState(null);
   const location = useLocation();
   const [liked, setLiked] = useState(false);
   const [liked_by, setLiked_by] = useState([]);
@@ -18,28 +17,21 @@ function Details() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const like = async () => {
+    const fetchLikes = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/getlikes?recipe_id=${recipesData.data.id}`
+        const likes = await getLikes(recipesData.data.id);
+        setLiked_by(likes);
+        const userId = auth.auth.data[0].id;
+        const isUserIdIncluded = likes.some(
+          (user_id) => user_id.user_id === userId
         );
-        if (!response.data.data || response.data.data.length === 0) {
-          setLiked(false);
-        } else {
-          setLiked_by(response.data.data);
-          const userId = auth.auth.data[0].id;
-          const isUserIdIncluded = response.data.data.some(
-            (user_id) => user_id.user_id === userId
-          );
-          setLiked(isUserIdIncluded !== undefined ? isUserIdIncluded : false);
-        }
+        setLiked(isUserIdIncluded);
       } catch (error) {
-        console.log(error);
         setLiked(false);
       }
     };
-    like();
-  }, []);
+    fetchLikes();
+  }, [auth, recipesData]);
 
   const handleLikeButtonPress = async () => {
     try {
@@ -48,28 +40,12 @@ function Details() {
         setLoginMessage("Please login first");
         return;
       }
-      if (liked === true) {
-        const token = auth.token;
-        await axios.delete(
-          `${process.env.REACT_APP_BASE_URL}/unlikes?recipe_id=${recipesData.data.id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+      const token = auth.token;
+      if (liked) {
+        await unlikeRecipe(recipesData.data.id, token);
         setLiked(false);
       } else {
-        const token = auth.token;
-        await axios.post(
-          `${process.env.REACT_APP_BASE_URL}/likes?recipe_id=${recipesData.data.id}`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        await likeRecipe(recipesData.data.id, token);
         setLiked(true);
       }
     } catch (error) {

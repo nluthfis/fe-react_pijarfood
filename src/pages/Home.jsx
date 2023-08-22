@@ -4,9 +4,9 @@ import "../styles/Home.css";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import SearchBar from "../components/home/SearchBar";
-import RecipeFetcher from "../components/home/api/RecipeFetcher";
+import RecipeFetcher from "../api/RecipeFetcher";
 import RecipeCard from "../components/home/RecipeCard";
-import NewRecipeFetcher from "../components/home/api/NewRecipeFetcher";
+import NewRecipeFetcher from "../api/NewRecipeFetcher";
 import PopularRecipeSection from "../components/home/PopularRecipeSection";
 import Pagination from "../components/home/Pagination";
 
